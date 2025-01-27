@@ -7,7 +7,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 flex items-center justify-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
@@ -28,7 +28,8 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer className="w-full py-6 bg-gray-100 dark:bg-gray-800">
+
+      <footer className="w-full py-6 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
         <div className="container px-4 md:px-6">
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
             (c) 2024 Q&A Platform. All rights reserved.
@@ -38,3 +39,5 @@ export default function Home() {
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic';
