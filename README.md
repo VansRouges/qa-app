@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Q&A Platform with RBAC
 
-## Getting Started
+> A modern Q&A platform built with Next.js and Clerk, featuring role-based access control. Ask questions, share knowledge, and learn from others in a secure, well-structured environment.
 
-First, run the development server:
+![Q&A Platform Screenshot](public/screenshot.png)
 
+> This project is based on the Q&A app by Ankur Tyagi, located at [https://github.com/tyaga001/clerk-qa-platform](https://github.com/tyaga001/clerk-qa-platform).
+
+## 🌟 Features
+
+- **Authentication & Authorization**
+  - Secure authentication with Clerk
+  - Role-based access control (RBAC)
+  - Protected routes and API endpoints
+
+- **Core Functionality**
+  - Ask and answer questions
+  - Search users and questions
+  - Admin dashboard for content moderation
+  - Real-time updates
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm/yarn
+- A Clerk account
+- A Neon Database account
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/bmorrisondev/qa-app
+cd qa-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+```bash
+# Create a .env file in the root directory and add:
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+CLERK_SECRET_KEY=your_secret_key
+NEON_DATABASE_URL=your_database_url
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Initialize the database:
+```bash
+npx drizzle-kit push
+```
 
-## Learn More
+5. Start the development server:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Visit `http://localhost:3000` to see the application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗️ Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+clerk-qa-platform/
+├── .idea/                # IDE configuration
+├── .next/                # Next.js build output
+├── drizzle/              # Drizzle ORM files
+├── node_modules/         # Dependencies
+├── public/              # Static files
+├── src/                 # Source code
+│   ├── app/            # Next.js app directory
+│   │   ├── admin/      # Admin features
+│   │   ├── qa/         # Q&A features
+│   ├── components/     # React components
+│   ├── db/            # Database configurations
+│   ├── lib/           # Utility libraries
+│   ├── types/         # TypeScript types
+│   └── utils/         # Utility functions
+├── .env               # Environment variables
+├── .gitignore        # Git ignore rules
+├── favicon.ico       # Site favicon
+├── globals.css       # Global styles
+├── layout.tsx        # Root layout
+├── middleware.ts     # Auth middleware
+└── page.tsx          # Root page
+```
 
-## Deploy on Vercel
+## 🔐 Role-Based Access Control
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The platform implements three main roles:
+- **Admin**: Full access to all features
+- **Moderator**: Can moderate content
+- **User**: Can ask and answer questions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 Environment Variables
+
+Required environment variables:
+```bash
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEON_DATABASE_URL=
+```
+
+## 🤝 Contributing
+
+Contributions are welcome. Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the Creative Commons License - see the [LICENSE](LICENSE) file for details.
+
+## 👏 Acknowledgments
+
+- [Clerk](https://clerk.dev/) for authentication
+- [Neon](https://neon.tech/) for the database
