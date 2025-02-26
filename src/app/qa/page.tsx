@@ -24,7 +24,7 @@ export default function QAPage() {
       const userId = user.id
       const role = user.publicMetadata?.role // Check if role exists
 
-      if (!role || role !== 'contributor') {
+      if (!role || role === 'viewer') {
         // Call the server-side function from actions.ts
         await actions.updateUserRole(userId)
       }
