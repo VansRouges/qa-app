@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { SignedIn, UserButton, SignedOut, SignInButton } from '@clerk/nextjs'
+import Image from 'next/image'
 
 function Header() {
   return (
@@ -10,7 +11,14 @@ function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="text-xl font-bold">
-            Q&A Platform
+            <Image
+              src="/shield.png"
+              alt="Shield"
+              width={100}
+              height={100}
+              className="mx-auto w-10 h-10"
+              unoptimized={true}
+            />
           </Link>
           <nav>
             <ul className="flex space-x-4">

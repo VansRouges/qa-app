@@ -12,7 +12,7 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  Welcome to Our Q&A Platform
+                  Welcome to PathFinders Conference<br/> Q&A Platform
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
                   Join our community to ask questions, share knowledge, and
@@ -32,7 +32,7 @@ export default function Home() {
       <footer className="w-full py-6 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
         <div className="container px-4 md:px-6">
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            (c) 2024 Q&A Platform. All rights reserved.
+            (c) 2025 PathFinders Conference Q&A Platform. All rights reserved.
           </p>
         </div>
       </footer>

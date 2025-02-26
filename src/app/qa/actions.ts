@@ -47,9 +47,13 @@ export const createQuestion = async (quiz: string) => {
     throw new Error("Unauthorized");
   }
 
+  if (!user.username) {
+    throw new Error("Username is missing");
+  }
+
   await db.insert(questions).values({
     quiz: quiz,
-    contributor: user.fullName as string,
+    contributor: user.username as string,
     contributorId: user.id,
   });
 };
@@ -61,9 +65,13 @@ export const createAnswer = async (answer: string, questionId: number) => {
     throw new Error("Unauthorized");
   }
 
+  if (!user.username) {
+    throw new Error("Username is missing");
+  }
+
   await db.insert(answers).values({
     ans: answer,
-    contributor: user.fullName as string,
+    contributor: user.username as string,
     contributorId: user.id,
     questionId: questionId,
   });
