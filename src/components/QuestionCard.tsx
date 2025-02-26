@@ -5,6 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { CheckCircle, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface Props {
   question: Question;
@@ -21,6 +22,26 @@ export default function QuestionCard({
   onAnswerApproved, 
   onAnswerDisapproved 
 }: Props) {
+  const handleQuestionApproval = (id: number) => {
+    onQuestionApproved(id);
+    toast.success("Question approved successfully!");
+  };
+
+  const handleQuestionDisapproval = (id: number) => {
+    onQuestionDisapproved(id);
+    toast.error("Question disapproved.");
+  };
+
+  const handleAnswerApproval = (answerId: number) => {
+    onAnswerApproved(answerId);
+    toast.success("Answer approved successfully!");
+  };
+
+  const handleAnswerDisapproval = (answerId: number) => {
+    onAnswerDisapproved(answerId);
+    toast.error("Answer disapproved.");
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -35,17 +56,15 @@ export default function QuestionCard({
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() =>
-                  question.id !== null && onQuestionApproved(question.id)
-                }>
+                onClick={() => question.id !== null && handleQuestionApproval(question.id)}
+              >
                 <CheckCircle className="h-4 w-4 text-green-500" />
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() =>
-                  question.id !== null && onQuestionDisapproved(question.id)
-                }>
+                onClick={() => question.id !== null && handleQuestionDisapproval(question.id)}
+              >
                 <XCircle className="h-4 w-4 text-red-500" />
               </Button>
             </div>
@@ -74,9 +93,10 @@ export default function QuestionCard({
                       size="icon"
                       onClick={() => {
                         if (question.id !== null && answer.id !== null) {
-                          onAnswerApproved(answer.id);
+                          handleAnswerApproval(answer.id);
                         }
-                      }}>
+                      }}
+                    >
                       <CheckCircle className="h-4 w-4 text-green-500" />
                     </Button>
                     <Button
@@ -84,9 +104,10 @@ export default function QuestionCard({
                       size="icon"
                       onClick={() => {
                         if (question.id !== null && answer.id !== null) {
-                          onAnswerDisapproved(answer.id);
+                          handleAnswerDisapproval(answer.id);
                         }
-                      }}>
+                      }}
+                    >
                       <XCircle className="h-4 w-4 text-red-500" />
                     </Button>
                   </div>
@@ -110,25 +131,19 @@ export default function QuestionCard({
 function ApprovalBadge({ approved }: { approved: boolean | null }) {
   if (approved === true) {
     return (
-      <Badge
-        variant="outline"
-        className="bg-green-100 text-green-800 border-green-300">
+      <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300">
         Approved
       </Badge>
     );
   } else if (approved === false) {
     return (
-      <Badge
-        variant="outline"
-        className="bg-red-100 text-red-800 border-red-300">
+      <Badge variant="outline" className="bg-red-100 text-red-800 border-red-300">
         Disapproved
       </Badge>
     );
   } else {
     return (
-      <Badge
-        variant="outline"
-        className="bg-yellow-100 text-yellow-800 border-yellow-300">
+      <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-300">
         Pending
       </Badge>
     );
