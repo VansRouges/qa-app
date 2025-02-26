@@ -12,7 +12,7 @@ function Header() {
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="text-xl font-bold">
             <Image
-              src="/shield.png"
+              src="/shield-1.png"
               alt="Shield"
               width={100}
               height={100}

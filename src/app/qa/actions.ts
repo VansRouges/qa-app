@@ -3,6 +3,23 @@ import { db } from "@/db/index";
 import { questions, answers } from "@/db/schema";
 import { and, desc, eq } from "drizzle-orm";
 import { currentUser } from '@clerk/nextjs/server'
+import { clerkClient } from "@clerk/nextjs/server";
+
+export const updateUserRole = async (userId: string) => {
+  const client = await clerkClient();
+
+  if (!userId) return;
+
+  try {
+    const res = await client.users.updateUser(userId, {
+        publicMetadata: { role: 'contributor' }
+      })
+    console.log({ message: res.publicMetadata });
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : String(err));
+  }
+}
+
 
 // Fetches all questions, available to authenticated and anonymous users
 export async function getAllQuestions(): Promise<Question[]> {

@@ -1,17 +1,37 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useUser, useClerk } from '@clerk/nextjs'
 import QuestionForm from '../../components/QuestionForm'
 import Header from '../../components/Header'
 import QuestionItem from '@/components/QuestionItem'
 import * as actions from '../../app/qa/actions'
 
+
 export default function QAPage() {
+  const { user } = useUser() // Get the currently signed-in user
+  const { user: clerkUser } = useClerk() // Get Clerk instance for user updates
   const [questions, setQuestions] = useState<Question[]>([])
 
   useEffect(() => {
     fetchQuestions()
   }, [])
+
+  useEffect(() => {
+    const assignUserRole = async () => {
+      if (!user) return // Do nothing if there's no signed-in user
+
+      const userId = user.id
+      const role = user.publicMetadata?.role // Check if role exists
+
+      if (!role || role !== 'contributor') {
+        // Call the server-side function from actions.ts
+        await actions.updateUserRole(userId)
+      }
+    }
+
+    assignUserRole()
+  }, [user]) // Runs when the user changes
 
   const fetchQuestions = async () => {
     const questions = await actions.getAllQuestions()
